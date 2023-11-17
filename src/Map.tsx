@@ -1,26 +1,20 @@
-import React from 'react';
+import { useEffect } from 'react';
+import './Map.css';
 declare global {
   interface Window {
     geolonia: any;
   }
 }
 
-const style = {
-  position: 'absolute',
-  width: '100vw',
-  height: '100vh',
-} as React.CSSProperties;
-
-
 const Component = () => {
-  const mapContainer = React.useRef(null);
 
-  React.useEffect(() => {
+  useEffect(() => {
     const map = new window.geolonia.Map({
-      container: mapContainer.current,
+      container: '#map',
+      center: [139.767, 35.681],
       zoom: 10,
       hash: true,
-      style: "geolonia/basic",
+      style: "geolonia/gsi",
     })
 
     map.on('load', () => {
@@ -31,7 +25,7 @@ const Component = () => {
 
   return (
     <>
-      <div style={style} ref={mapContainer}/>
+      <div id="map" />
     </>
   );
 }
